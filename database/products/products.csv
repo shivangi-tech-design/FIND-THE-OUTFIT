@@ -1,0 +1,4 @@
+product_id,product_name,image_path,brand,price,source,url
+p003,Red Lehenga,p003.jpg,Zeel Clothing,3849,Amazon,"https://www.amazon.in/Zeel-Clothing-Embroidered-Georgette-5124-Red-Women-Lehenga-Choli-Latest/dp/B0CQG123V6/"
+p002,Red Hoodie,p002.jpg,WearIndia,549,Amazon,"https://www.amazon.in/WearIndia-Hoodies-Sweatshirt-Kangaroo-X-Small/dp/B083Y3L5SP/"
+p001,Men's Black Leather Jacket,p001.jpg,Generic,849,Amazon,"https://www.amazon.in/Leather-Jacket-Sleeve-Collar-Casual/dp/B0HK463LYJ/"
