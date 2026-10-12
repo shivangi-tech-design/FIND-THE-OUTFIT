@@ -1,4 +1,4 @@
-#include"user.h"
+ #include"user.h"
 #include<iostream>
 using namespace std;
 
@@ -16,7 +16,7 @@ void User::displayprofile(){
     cout<<"NAME= "<<username<<endl;
     cout<<"EMAIL ID= "<<email<<endl;
     cout<<"PASSWORD= "<<password<<endl;
-    cout<<"YOUR ACCOUNT IS "<<isPrivate<<endl<<endl;
+    cout<<"YOUR ACCOUNT IS ="<<isPrivate<<endl<<endl;
 }
 
 
