@@ -15,9 +15,10 @@ void User::displayprofile(){
     cout<<"USER ID= "<<userId<<endl;
     cout<<"NAME= "<<username<<endl;
     cout<<"EMAIL ID= "<<email<<endl;
-    cout<<"PASSWORD= "<<password<<endl;
-    cout<<"YOUR ACCOUNT IS ="<<isPrivate<<endl<<endl;
+    cout<<"YOUR ACCOUNT IS "<<(isPrivate ? "PRIVATE" : "PUBLIC")<<endl<<endl;
 }
 
-
+bool User::checkPassword(const string& password) {
+    return this->password == password;
+}
 

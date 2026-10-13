@@ -1,6 +1,7 @@
 #ifndef USER_H
 #define USER_H
 //not including iostream bcoz we r not using iostream objects here
+
 #include<string>
 using namespace std;
 
@@ -15,7 +16,17 @@ class User{
     public:
     User(int id,string name,string mail,string pwd,bool pvt);
     void displayprofile();
-    void pass();
+    
+
+    int getUserId()const;
+    string getUsername()const;
+    string getEmail()const;
+    bool getPrivacy()const;
+
+    
+    bool checkPassword(const string& pwd);
+    
+
 
 };
 #endif

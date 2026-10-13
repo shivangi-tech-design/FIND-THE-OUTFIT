@@ -12,7 +12,7 @@ private:
     unordered_map<string,User>usersByEmail;
     unordered_map<string,int>failedAttempts;
 
-    int nextUserId= 1;
+    int nextsUserId= 1;
     bool isLoggedIn= false;
     string loggedInUsername;
 

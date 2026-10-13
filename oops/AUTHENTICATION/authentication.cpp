@@ -24,17 +24,23 @@ using namespace std;
             cout<<"This email is already registered:("<<endl;
             return;
         }
-        if(!validatepassword(password)){
+        while(!validatepassword(password)){
+        
             cout<<"invalid password"<<endl;
-            cout<<"password must be of atleast 8 characters\npassword must contain atleast one special,upper and lower case character."<<endl;
-            return;
+            cout<<"password must be of atleast 8 characters\npassword must contain atleast one special,upper and lower case character."<<endl; 
+        
+        
+        cout<<"try another passkey:\n";
+        cin>>password;
+        
         }
-        User newUser(nextUserId, username, email, password, false);
+            
+        User newUser(nextsUserId, username, email, password, false);
 
         usersByUsername.insert({username, newUser});
         usersByEmail.insert({email, newUser});
         
-        nextUserId++;
+        nextsUserId++;
 
         cout <<"Registration successful!"<< endl;
 
@@ -42,7 +48,7 @@ using namespace std;
 
     bool Authentication::validatepassword(const string& password){
         if(password.length() < 8){
-            cout<<"Password must be of atleast 8 characters\n";
+            
             return 0;
         }
         bool upper=false;
@@ -67,13 +73,14 @@ using namespace std;
     }
 
     
-     void Authentication::  login() {
+    void Authentication::  login() {
     string username,password;
 
-    if (isLoggedIn) {
+    if (isLoggedIn){
         cout<<"A user is already logged in.\n";
         return;
     }
+
     cout<<"USERNAME:\n";
     cin>>username;
 
@@ -98,8 +105,8 @@ using namespace std;
         isLoggedIn=true;
         loggedInUsername= username;
         failedAttempts[username]= 0;
-
     }
+
     else {
         failedAttempts[username]++;
 
