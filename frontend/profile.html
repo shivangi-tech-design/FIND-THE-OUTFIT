@@ -1,0 +1,480 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>FIND THE OUTFIT — Curator Profile &amp; Lookbook</title>
+  
+  <!-- Google Fonts: Playfair Display for editorial headings, Poppins for interface typography -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400;1,600&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  
+  <!-- Stylesheets -->
+  <link rel="stylesheet" href="css/feed.css">
+  <link rel="stylesheet" href="css/profile.css">
+  
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>✨</text></svg>">
+</head>
+<body>
+
+  <!-- =========================================================================
+       1. NAVIGATION BAR (Consistent with Home Feed)
+       ========================================================================= -->
+  <header class="navbar" id="topNavbar">
+    <div class="navbar-container">
+      
+      <!-- Brand Logo & Name (Left) -->
+      <a href="feed.html" class="navbar-brand" aria-label="Find The Outfit Home">
+        <div class="brand-monogram" aria-hidden="true">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6">
+            <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/>
+          </svg>
+        </div>
+        <div class="brand-text-group">
+          <span class="brand-title">FIND THE OUTFIT</span>
+          <span class="brand-badge">Editorial Profile</span>
+        </div>
+      </a>
+
+      <!-- Primary Navigation Links (Center-Left) -->
+      <nav class="navbar-nav" aria-label="Main Navigation">
+        <a href="feed.html" class="nav-link">
+          <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+            <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path>
+            <polyline points="9 22 9 12 15 12 15 22"></polyline>
+          </svg>
+          <span>Home</span>
+        </a>
+        <a href="feed.html#explore" class="nav-link">
+          <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+            <circle cx="12" cy="12" r="10"></circle>
+            <polygon points="16.24 7.76 14.12 14.12 7.76 16.24 9.88 9.88 16.24 7.76"></polygon>
+          </svg>
+          <span>Explore</span>
+        </a>
+        <a href="feed.html#following" class="nav-link">
+          <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+            <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path>
+            <circle cx="9" cy="7" r="4"></circle>
+            <path d="M23 21v-2a4 4 0 0 0-3-3.87"></path>
+            <path d="M16 3.13a4 4 0 0 1 0 7.75"></path>
+          </svg>
+          <span>Following</span>
+        </a>
+      </nav>
+
+      <!-- Search Bar (Center-Right) -->
+      <div class="search-container">
+        <div class="search-input-wrapper">
+          <span class="search-icon" aria-hidden="true">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <circle cx="11" cy="11" r="8"></circle>
+              <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+            </svg>
+          </span>
+          <input 
+            type="search" 
+            id="searchInput" 
+            class="search-input" 
+            placeholder="Search curators by @username..." 
+            autocomplete="off"
+            aria-label="Search curators by username"
+          >
+          <button type="button" id="searchClearBtn" class="search-clear-btn" aria-label="Clear search" hidden>&times;</button>
+        </div>
+
+        <!-- Search Results Dropdown -->
+        <div class="search-results-dropdown" id="searchResultsDropdown" hidden>
+          <div class="dropdown-header">Curators &amp; Stylists</div>
+          <ul class="search-results-list" id="searchResultsList"></ul>
+        </div>
+      </div>
+
+      <!-- User Actions & Profile Menu (Right) -->
+      <div class="navbar-actions">
+        
+        <!-- Header Create Post Action -->
+        <button type="button" class="btn btn-create-header" id="headerCreatePostBtn" title="Create a new outfit post">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2">
+            <line x1="12" y1="5" x2="12" y2="19"></line>
+            <line x1="5" y1="12" x2="19" y2="12"></line>
+          </svg>
+          <span>Create Post</span>
+        </button>
+
+        <!-- Notification Bell -->
+        <div class="notification-wrapper">
+          <button type="button" class="icon-button" id="notificationBtn" aria-label="Notifications" aria-haspopup="true" aria-expanded="false">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+              <path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"></path>
+              <path d="M13.73 21a2 2 0 0 1-3.46 0"></path>
+            </svg>
+            <span class="notification-badge" id="notificationCount">2</span>
+          </button>
+
+          <!-- Dropdown -->
+          <div class="notification-dropdown" id="notificationDropdown" hidden>
+            <div class="notification-header">
+              <h3>Notifications</h3>
+              <button type="button" class="btn-text-subtle" id="markAllReadBtn">Mark as read</button>
+            </div>
+            <ul class="notification-list">
+              <li class="notification-empty" style="padding: 1.5rem; text-align: center; color: var(--color-ink-light); font-size: 0.85rem;">
+                No notifications at this time
+              </li>
+            </ul>
+          </div>
+        </div>
+
+        <!-- User Profile Dropdown Menu -->
+        <div class="profile-menu-wrapper">
+          <button type="button" class="profile-avatar-btn active" id="userMenuBtn" aria-label="Open User Menu" aria-haspopup="true" aria-expanded="false">
+            <img 
+              src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 40 40'%3E%3Crect width='40' height='40' fill='%23E8DFD8'/%3E%3Ccircle cx='20' cy='15' r='7' fill='%238A7E74'/%3E%3Cpath d='M8 35 c0-7 6-11 12-11 s12 4 12 11' fill='%238A7E74'/%3E%3C/svg%3E" 
+              alt="Logged in user profile" 
+              class="user-avatar-img"
+              id="navbarAvatarImg"
+            >
+            <span class="user-status-indicator" title="Curator Active"></span>
+          </button>
+
+          <div class="user-dropdown-menu" id="userDropdownMenu" hidden>
+            <div class="dropdown-user-header">
+              <span class="dropdown-user-name" id="dropdownUserName">Curator</span>
+              <span class="dropdown-user-handle" id="dropdownUserHandle">@curator</span>
+            </div>
+            <div class="dropdown-divider"></div>
+            <a href="profile.html" class="dropdown-item active" id="menuProfileLink">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+                <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
+                <circle cx="12" cy="7" r="4"></circle>
+              </svg>
+              <span>View Profile</span>
+            </a>
+            <a href="feed.html#saved" class="dropdown-item" id="menuSavedLink">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+                <path d="M19 21l-7-5-7 5V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2z"></path>
+              </svg>
+              <span>Saved Outfits</span>
+            </a>
+            <a href="feed.html" class="dropdown-item" id="menuHomeLink">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+                <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path>
+              </svg>
+              <span>Home Feed</span>
+            </a>
+            <div class="dropdown-divider"></div>
+            <a href="login.html" class="dropdown-item logout" id="logoutActionBtn">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+                <path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"></path>
+                <polyline points="16 17 21 12 16 7"></polyline>
+                <line x1="21" y1="12" x2="9" y2="12"></line>
+              </svg>
+              <span>Sign Out</span>
+            </a>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </header>
+
+  <!-- =========================================================================
+       2. PROFILE MAIN CONTAINER
+       ========================================================================= -->
+  <main class="profile-page-wrapper">
+    <div class="profile-container">
+
+      <!-- Breadcrumbs & Quick Return -->
+      <nav class="profile-breadcrumb-nav" aria-label="Breadcrumb">
+        <a href="feed.html" class="breadcrumb-back-link">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <polyline points="15 18 9 12 15 6"></polyline>
+          </svg>
+          <span>Back to Feed</span>
+        </a>
+        <span class="breadcrumb-separator">•</span>
+        <span class="breadcrumb-current" id="breadcrumbCuratorName">Curator Lookbook</span>
+      </nav>
+
+      <!-- Profile Header Showcase Card -->
+      <section class="profile-hero-card">
+        <div class="profile-hero-cover">
+          <span class="hero-season-badge">CURATED LOOKBOOK • AUTUMN / WINTER 2026</span>
+        </div>
+
+        <div class="profile-hero-body">
+          <div class="profile-avatar-row">
+            <div class="profile-main-avatar-wrapper">
+              <img 
+                src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 40 40'%3E%3Crect width='40' height='40' fill='%23E8DFD8'/%3E%3Ccircle cx='20' cy='15' r='7' fill='%238A7E74'/%3E%3Cpath d='M8 35 c0-7 6-11 12-11 s12 4 12 11' fill='%238A7E74'/%3E%3C/svg%3E" 
+                alt="Profile portrait" 
+                class="profile-main-avatar"
+                id="profileMainAvatar"
+              >
+            </div>
+
+            <!-- Profile Action Buttons -->
+            <div class="profile-actions-group" id="profileActionsGroup">
+              <!-- Rendered dynamically (Edit Profile vs Follow button) -->
+            </div>
+          </div>
+
+          <div class="profile-info-block">
+            <div class="profile-name-row">
+              <h1 class="profile-name" id="profileDisplayName">Curator</h1>
+              <span class="verified-icon" id="profileVerifiedIcon" title="Editorial Verified">✓</span>
+            </div>
+
+            <div class="profile-meta-row">
+              <span class="profile-handle" id="profileDisplayHandle">@curator</span>
+              <span class="profile-dot">•</span>
+              <span class="profile-niche" id="profileDisplayNiche">Minimalist Tailoring &amp; Quiet Luxury</span>
+              <span class="profile-dot">•</span>
+              <span class="profile-location" id="profileDisplayLocation">Paris &amp; New York</span>
+            </div>
+
+            <p class="profile-bio" id="profileDisplayBio">
+              Curator of timeless silhouettes, vintage raw silks, tailored cashmere, and autumnal tonal palettes 🍂 Co-founder of The Minimal Collective.
+            </p>
+
+            <div class="profile-aesthetic-tags" id="profileAestheticTags">
+              <span class="aesthetic-tag">#Minimal</span>
+              <span class="aesthetic-tag">#OldMoney</span>
+              <span class="aesthetic-tag">#Tailoring</span>
+              <span class="aesthetic-tag">#QuietLuxury</span>
+            </div>
+          </div>
+
+          <!-- Profile Stats Row -->
+          <div class="profile-stats-bar">
+            <div class="profile-stat-item">
+              <span class="stat-number" id="profilePostsCount">5</span>
+              <span class="stat-title">Lookbooks</span>
+            </div>
+            <div class="profile-stat-divider"></div>
+            <div class="profile-stat-item">
+              <span class="stat-number" id="profileFollowersCount">2.4k</span>
+              <span class="stat-title">Followers</span>
+            </div>
+            <div class="profile-stat-divider"></div>
+            <div class="profile-stat-item">
+              <span class="stat-number" id="profileFollowingCount">482</span>
+              <span class="stat-title">Following</span>
+            </div>
+            <div class="profile-stat-divider"></div>
+            <div class="profile-stat-item">
+              <span class="stat-number" id="profileSavedCount">18</span>
+              <span class="stat-title">Saved</span>
+            </div>
+          </div>
+
+        </div>
+      </section>
+
+      <!-- Profile Navigation Tabs -->
+      <nav class="profile-tabs-nav" aria-label="Profile Sections">
+        <button type="button" class="profile-tab-btn active" data-tab="lookbook">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+            <rect x="3" y="3" width="7" height="7"></rect>
+            <rect x="14" y="3" width="7" height="7"></rect>
+            <rect x="14" y="14" width="7" height="7"></rect>
+            <rect x="3" y="14" width="7" height="7"></rect>
+          </svg>
+          <span>Curated Lookbook</span>
+          <span class="tab-count-badge" id="tabLookbookCount">5</span>
+        </button>
+
+        <button type="button" class="profile-tab-btn" data-tab="saved" id="profileSavedTabBtn">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+            <path d="M19 21l-7-5-7 5V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2z"></path>
+          </svg>
+          <span>Saved Outfits</span>
+          <span class="tab-count-badge" id="tabSavedCount">18</span>
+        </button>
+
+        <button type="button" class="profile-tab-btn" data-tab="collections">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+            <polygon points="12 2 2 7 12 12 22 7 12 2"></polygon>
+            <polyline points="2 17 12 22 22 17"></polyline>
+            <polyline points="2 12 12 17 22 12"></polyline>
+          </svg>
+          <span>Collections</span>
+        </button>
+      </nav>
+
+      <!-- Tab Content Area -->
+      <section class="profile-content-area">
+        <!-- 1. Lookbook Posts Grid -->
+        <div class="profile-grid-container" id="profilePostsGrid">
+          <!-- Dynamically populated via js/profile.js -->
+        </div>
+
+        <!-- 2. Collections Section (Hidden by default) -->
+        <div class="profile-collections-container" id="profileCollectionsContainer" hidden>
+          <div style="grid-column: 1 / -1; padding: 4rem 1.5rem; text-align: center; color: var(--color-ink-light);">
+            <p style="font-family: var(--font-serif); font-size: 1.2rem; color: var(--color-espresso); margin-bottom: 0.5rem;">No Collections Created Yet</p>
+            <p style="font-size: 0.88rem;">Curated fashion collections and seasonal moodboards will appear here.</p>
+          </div>
+        </div>
+      </section>
+
+    </div>
+  </main>
+
+  <!-- =========================================================================
+       3. "FIND THE OUTFIT" VISUAL SIMILARITY MODAL
+       ========================================================================= -->
+  <div class="modal-backdrop" id="findOutfitModal" role="dialog" aria-modal="true" aria-labelledby="findOutfitModalTitle" hidden>
+    <div class="modal-dialog modal-dialog-large">
+      <div class="modal-header">
+        <div class="find-modal-title-group">
+          <div class="similarity-badge">
+            <span class="sparkle-icon">✨</span>
+            <span>VISUAL SIMILARITY ENGINE</span>
+          </div>
+          <h2 class="modal-title" id="findOutfitModalTitle">Visually Similar Clothing Pieces</h2>
+          <p class="modal-subtitle">AI-matched garments ranked by visual cut, texture, colorway &amp; drape</p>
+        </div>
+        <button type="button" class="modal-close-btn" id="closeFindModalBtn" aria-label="Close modal">&times;</button>
+      </div>
+
+      <div class="modal-body">
+        <div class="matched-outfit-source-banner">
+          <img src="" id="matchedSourceImg" alt="Source outfit photograph" class="source-thumb">
+          <div class="source-details">
+            <span class="source-tag">Source Lookbook</span>
+            <h3 class="source-title" id="matchedSourceTitle">Structured Camel Trench</h3>
+            <span class="source-curator" id="matchedSourceCurator">Uploaded by curator</span>
+          </div>
+          <div class="similarity-score-hero">
+            <span class="score-number">98%</span>
+            <span class="score-label">Top Visual Match</span>
+          </div>
+        </div>
+
+        <div class="similarity-grid-header">
+          <span class="grid-title">Ranked Similar Items</span>
+          <div class="grid-filter-chips">
+            <button type="button" class="filter-mini-chip active" data-match-filter="all">All Pieces</button>
+            <button type="button" class="filter-mini-chip" data-match-filter="Outerwear">Outerwear</button>
+            <button type="button" class="filter-mini-chip" data-match-filter="Tops">Tops</button>
+            <button type="button" class="filter-mini-chip" data-match-filter="Bottoms">Bottoms</button>
+            <button type="button" class="filter-mini-chip" data-match-filter="Accessories">Accessories</button>
+          </div>
+        </div>
+
+        <div class="similarity-cards-container" id="similarityCardsContainer"></div>
+      </div>
+
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" id="closeFindModalBottomBtn">Close Matches</button>
+        <button type="button" class="btn btn-primary" id="saveMatchedLookBtn">Save Match List</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- =========================================================================
+       4. CREATE POST MODAL (Available across profile lookbook too)
+       ========================================================================= -->
+  <div class="modal-backdrop" id="createPostModal" role="dialog" aria-modal="true" aria-labelledby="createPostModalTitle" hidden>
+    <div class="modal-dialog">
+      <div class="modal-header">
+        <h2 class="modal-title" id="createPostModalTitle">Create Outfit Post</h2>
+        <button type="button" class="modal-close-btn" id="closeCreateModalBtn" aria-label="Close modal">&times;</button>
+      </div>
+
+      <form id="createPostForm" class="modal-form" novalidate>
+        <div class="modal-body">
+          <div class="upload-zone" id="uploadDropZone">
+            <input 
+              type="file" 
+              id="outfitFileInput" 
+              accept="image/png, image/jpeg, image/webp" 
+              class="file-input-hidden"
+              aria-label="Upload outfit photograph from computer"
+            >
+            <div class="upload-prompt" id="uploadPrompt">
+              <div class="upload-icon-circle">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6">
+                  <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+                  <polyline points="17 8 12 3 7 8"></polyline>
+                  <line x1="12" y1="3" x2="12" y2="15"></line>
+                </svg>
+              </div>
+              <p class="upload-instruction">
+                <strong>Click to select an outfit photograph</strong> or drag &amp; drop
+              </p>
+              <p class="upload-hint">High resolution JPEG, PNG, or WebP (max 10MB)</p>
+            </div>
+
+            <div class="upload-preview-wrapper" id="uploadPreviewWrapper" hidden>
+              <img id="imagePreview" src="" alt="Selected outfit preview" class="preview-image">
+              <div class="preview-actions">
+                <button type="button" class="btn-preview-action" id="changeImageBtn" title="Change chosen image">Change</button>
+                <button type="button" class="btn-preview-action danger" id="removeImageBtn" title="Remove selected image">Remove</button>
+              </div>
+            </div>
+          </div>
+          <div class="upload-error-msg" id="uploadErrorMsg"></div>
+
+          <div class="form-group">
+            <label for="postCategorySelect" class="form-label">Fashion Category</label>
+            <div class="select-wrapper">
+              <select id="postCategorySelect" class="form-select" required>
+                <option value="Minimal">Minimal • Tailored &amp; Clean Silhouettes</option>
+                <option value="Old Money">Old Money • Heritage, Cashmere &amp; Neutrals</option>
+                <option value="Streetwear">Streetwear • Boxy Cuts &amp; Contemporary Layers</option>
+                <option value="Casual">Casual • Everyday Chic &amp; Relaxed Linens</option>
+                <option value="Ethnic">Ethnic • Artisanal Weaves &amp; Modern Drapes</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <div class="label-with-counter">
+              <label for="postCaptionText" class="form-label">Styling Notes &amp; Caption</label>
+              <span class="char-counter" id="captionCharCounter">0 / 400</span>
+            </div>
+            <textarea 
+              id="postCaptionText" 
+              class="form-textarea" 
+              rows="3" 
+              maxlength="400"
+              placeholder="Describe your styling inspiration, garment textures, and seasonal palette..." 
+              required
+            ></textarea>
+            
+            <div class="caption-quick-tags" id="captionQuickTags">
+              <span class="quick-tags-title">Tap to add tags:</span>
+              <button type="button" class="quick-tag-chip" data-tag="#OldMoney">#OldMoney</button>
+              <button type="button" class="quick-tag-chip" data-tag="#Minimalist">#Minimalist</button>
+              <button type="button" class="quick-tag-chip" data-tag="#AutumnStyle">#AutumnStyle</button>
+              <button type="button" class="quick-tag-chip" data-tag="#Tailoring">#Tailoring</button>
+              <button type="button" class="quick-tag-chip" data-tag="#QuietLuxury">#QuietLuxury</button>
+            </div>
+          </div>
+        </div>
+
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" id="cancelPostBtn">Cancel</button>
+          <button type="submit" class="btn btn-primary" id="publishPostBtn">
+            <span class="btn-spinner" aria-hidden="true"></span>
+            <span class="btn-text">Publish Outfit</span>
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- Toast Notification Container -->
+  <div class="toast-container" id="toastContainer" aria-live="polite"></div>
+
+  <!-- JavaScript modules -->
+  <script src="js/config.js"></script>
+  <script src="js/session.js"></script>
+  <script src="js/profile.js"></script>
+</body>
+</html>
+
