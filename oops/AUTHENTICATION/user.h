@@ -1,32 +1,34 @@
+
 #ifndef USER_H
 #define USER_H
-//not including iostream bcoz we r not using iostream objects here
 
-#include<string>
-using namespace std;
+#include <string>
 
-class User{
-    private:
+class User
+{
+private:
     int userId;
-    string username;
-    string email;
-    string password;
+    std::string username;
+    std::string email;
+    std::string passwordHash;
     bool isPrivate;
 
-    public:
-    User(int id,string name,string mail,string pwd,bool pvt);
+public:
+    User(int id, std::string name, std::string mail,
+         std::string pwdHash, bool privacy);
+
     void displayprofile();
-    
 
-    int getUserId()const;
-    string getUsername()const;
-    string getEmail()const;
-    bool getPrivacy()const;
+    int getUserId() const;
+    std::string getUsername() const;
+    std::string getEmail() const;
+    bool getPrivacy() const;
 
-    
-    bool checkPassword(const string& pwd);
-    
+    // Generate a secure password hash
+    static std::string hashPassword(const std::string& password);
 
-
+    // Verify entered password against stored hash
+    bool checkPassword(const std::string& password) const;
 };
+
 #endif
